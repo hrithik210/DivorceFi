@@ -19,7 +19,7 @@ contract RelationshipContract is ERC721, ReentrancyGuard, Ownable {
   mapping(uint => Relationship) public relationships;
 
   event RelationshipMinted(uint tokenId , address indexed partner1 , address indexed partner2 , uint stakeAmount);
-  event Divorce(uint indexed tokenId , uint indexed payout);
+  event DivorceEvent(uint indexed tokenId , uint indexed payout);
 
   constructor() ERC721("RelationshipToken", "REL") {
 
@@ -41,6 +41,28 @@ contract RelationshipContract is ERC721, ReentrancyGuard, Ownable {
 
     emit RelationshipMinted(tokenId, msg.sender, _partner2, msg.value);
     
+  }
+
+  function Divorce(uint tokenId) external nonReentrant{
+    Relationship storage rel = relationships[tokenId];
+    require(rel.isActive , "relationship already broken");
+    require(msg.sender == rel.partner1 || msg.sender == rel.partner2 , "not ur relationship to break");
+
+    uint payout = rel.stakeAmount/2 ;
+
+    if(payout >0){
+      (bool sent1,) = rel.partner1.call{value : payout}("");
+      require(sent1, "faled to send to partner 1");
+
+      (bool sent2,) = rel.partner2.call{value : payout}("");
+      require(sent2, "faled to send to partner 2");
+    }
+
+    //burning nft
+    _burn(tokenId);
+    rel.isActive = false;
+
+    emit DivorceEvent(tokenId, payout);
   }
 
 
