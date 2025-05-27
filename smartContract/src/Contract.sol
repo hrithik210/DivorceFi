@@ -3,10 +3,9 @@ pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";  
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol"; 
-import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-contract RelationshipContract is ERC721, ReentrancyGuard, Ownable { 
+contract RelationshipContract is ERC721, ReentrancyGuard{ 
   uint nexttokenId = 1;
 
   struct Relationship{
@@ -65,5 +64,13 @@ contract RelationshipContract is ERC721, ReentrancyGuard, Ownable {
     emit DivorceEvent(tokenId, payout);
   }
 
+  function getRelationshipStatus(uint tokenId) external view returns(address, address, uint , bool){
+    Relationship memory rel = relationships[tokenId];
+
+    return (rel.partner1 , rel.partner2 , rel.stakeAmount , rel.isActive);
+  }
+
+  receive() external payable {}
+  fallback() external payable {}
 
 }
