@@ -1,14 +1,7 @@
-import { http, createConfig } from 'wagmi'
-import { mainnet, sepolia } from 'wagmi/chains'
-import { injected } from 'wagmi/connectors'
+// next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  
+};
 
-export const config = createConfig({
-  chains: [mainnet, sepolia],
-  connectors: [
-    injected(), // Only browser extension wallets (MetaMask, etc.)
-  ],
-  transports: {
-    [mainnet.id]: http(),
-    [sepolia.id]: http(),
-  },
-})
+module.exports = nextConfig;
