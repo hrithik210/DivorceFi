@@ -1,5 +1,6 @@
 'use client'
 
+import Homepage from '@/components/Homepage'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 
 function Home() {
@@ -10,7 +11,7 @@ function Home() {
   
   return (
     <div>
-      Hello
+      <Homepage />
     </div>
   )
 }

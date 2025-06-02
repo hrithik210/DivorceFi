@@ -10,7 +10,7 @@ export default function WalletButton() {
   return (
     <div className='bg-gray-100 flex justify-between gap-5 p-2'>
       {isConnected ? (
-        <div className='text-white font-bold'>
+        <div className='text-black font-bold'>
           Connected: {address?.substring(0, 6)}...{address?.substring(address.length - 4)}
         </div>
       ) : (
