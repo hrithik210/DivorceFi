@@ -8,7 +8,7 @@ export default function WalletButton() {
   const { address, isConnected } = useAccount()
 
   return (
-    <div className='bg-red-300 flex justify-between gap-5'>
+    <div className='bg-gray-100 flex justify-between gap-5 p-2'>
       {isConnected ? (
         <div className='text-white font-bold'>
           Connected: {address?.substring(0, 6)}...{address?.substring(address.length - 4)}
@@ -16,14 +16,14 @@ export default function WalletButton() {
       ) : (
         <button
           onClick={() => connect({ connector: connectors[0] })}
-          className='bg-blue-500 text-white px-4 py-2 rounded-lg'
+          className='bg-blue-500 text-white px-4 py-2 rounded-lg font-medium'
         >
-          connect
+          connect wallet
         </button>
       )}
       <button
         onClick={() => disconnect()}
-        className='bg-blue-500 text-white px-4 py-2 rounded-lg'
+        className='bg-blue-500 text-white px-4 py-2 rounded-lg font-medium'
       >
         disconnect
       </button>
