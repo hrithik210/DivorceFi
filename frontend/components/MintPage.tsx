@@ -1,11 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Heart, Sparkles, Gift, Zap } from 'lucide-react';
 
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  delay: number;
+  size: number;
+  type: string;
+}
+
+interface Confetti {
+  id: number;
+  x: number;
+  y: number;
+  rotation: number;
+  color: string;
+  delay: number;
+  size: number;
+}
+
 const MintRelationshipNFT = () => {
   const [isMinting, setIsMinting] = useState(false);
   const [showNFT, setShowNFT] = useState(false);
-  const [particles, setParticles] = useState([]);
-  const [confetti, setConfetti] = useState([]);
+  const [particles, setParticles] = useState<Particle[]>([]);
+  const [confetti, setConfetti] = useState<Confetti[]>([]);
 
   // Generate random particles for animation
   const generateParticles = () => {
