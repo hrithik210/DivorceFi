@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { Heart, Sparkles, Gift, Zap, User, Users, Loader2, CheckCircle, XCircle } from 'lucide-react';
 
@@ -10,15 +12,45 @@ const MintRelationshipNFT = () => {
   // Transaction state
   const [mintingState, setMintingState] = useState('idle'); // 'idle', 'signing', 'pending', 'success', 'failed'
   const [txHash, setTxHash] = useState('');
-  const [blockTimestamp, setBlockTimestamp] = useState(null);
+  const [blockTimestamp, setBlockTimestamp] = useState<number | null>(null);
   const [error, setError] = useState('');
   
   // NFT data from blockchain/metadata
-  const [nftData, setNftData] = useState(null);
+  interface NFTData {
+    tokenId: number;
+    partner1: string;
+    partner2: string;
+    mintedAt: number;
+    compatibility: number;
+    bondStrength: string;
+    rarity: string;
+    image: string;
+  }
+  
+  const [nftData, setNftData] = useState<NFTData | null>(null);
   
   // Animation state
-  const [particles, setParticles] = useState([]);
-  const [confetti, setConfetti] = useState([]);
+  interface Particle {
+    id: number;
+    x: number;
+    y: number;
+    delay: number;
+    size: number;
+    type: string;
+  }
+  
+  interface ConfettiPiece {
+    id: number;
+    x: number;
+    y: number;
+    rotation: number;
+    color: string;
+    delay: number;
+    size: number;
+  }
+  
+  const [particles, setParticles] = useState<Particle[]>([]);
+  const [confetti, setConfetti] = useState<ConfettiPiece[]>([]);
 
   // Generate random particles for animation
   const generateParticles = () => {
@@ -106,7 +138,6 @@ const MintRelationshipNFT = () => {
         // These would come from smart contract logic or metadata
         compatibility: Math.floor(Math.random() * 20) + 80, // 80-100%
         bondStrength: ['Strong', 'Unbreakable', 'Eternal', 'Infinite'][Math.floor(Math.random() * 4)],
-        rarity: calculateRarity(partner1Name, partner2Name), // Based on contract logic
         image: generateNFTImage(partner1Name, partner2Name) // IPFS hash or data URI
       };
       
@@ -127,16 +158,7 @@ const MintRelationshipNFT = () => {
   };
 
   // TODO: Implement actual rarity calculation based on contract logic
-  const calculateRarity = (name1, name2) => {
-    // This would be determined by smart contract logic
-    // Examples: name length, character combinations, mint number, etc.
-    const combinedLength = name1.length + name2.length;
-    if (combinedLength < 10) return 'Common';
-    if (combinedLength < 15) return 'Uncommon';
-    if (combinedLength < 20) return 'Rare';
-    if (combinedLength < 25) return 'Epic';
-    return 'Legendary';
-  };
+
 
   // TODO: Generate actual NFT image or return IPFS hash
   const generateNFTImage = (name1, name2) => {
