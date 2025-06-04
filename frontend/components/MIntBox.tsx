@@ -1,4 +1,13 @@
-const MintBox = ({ mintingState, txHash, error }) => {
+import { MintingState } from "@/types";
+import { Gift, Loader2, Sparkles, XCircle, Zap } from "lucide-react";
+
+interface MintBoxProps {
+  mintingState : MintingState,
+  txHash?: string,
+  error?: string
+}
+
+const MintBox = ({ mintingState, txHash, error } : MintBoxProps) => {
   const getBoxContent = () => {
     switch (mintingState) {
       case 'signing':
@@ -14,7 +23,7 @@ const MintBox = ({ mintingState, txHash, error }) => {
           <div className="animate-bounce">
             <Gift className="w-24 h-24 text-white mb-4" />
             <p className="text-white text-xl font-bold">Minting...</p>
-            <p className="text-white/80 text-sm">Tx: {txHash.slice(0, 10)}...</p>
+            <p className="text-white/80 text-sm">Tx: {txHash?.slice(0, 10)}...</p>
           </div>
         );
       case 'failed':
