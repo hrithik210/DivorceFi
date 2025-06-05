@@ -6,7 +6,7 @@ interface NftDataProps {
   blockTimestamp: number;
 }
 
-const NFTCard = ({ nftData, blockTimestamp } : NftDataProps) => {
+export const NFTCard = ({ nftData, blockTimestamp } : NftDataProps) => {
   const formatTimestamp = (timestamp : number) => {
     if (!timestamp) return '';
     return new Date(timestamp * 1000).toLocaleDateString();

@@ -6,7 +6,7 @@ interface statusMessageProps {
 
 }
 
-const StatusMessage = ({ mintingState, txHash } : statusMessageProps) => {
+export const StatusMessage = ({ mintingState, txHash } : statusMessageProps) => {
   const getStatusMessage = () => {
     switch (mintingState) {
       case 'signing':

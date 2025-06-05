@@ -7,7 +7,7 @@ interface MintBoxProps {
   error?: string
 }
 
-const MintBox = ({ mintingState, txHash, error } : MintBoxProps) => {
+export const MintBox = ({ mintingState, txHash, error } : MintBoxProps) => {
   const getBoxContent = () => {
     switch (mintingState) {
       case 'signing':
