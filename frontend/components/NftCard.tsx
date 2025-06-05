@@ -1,5 +1,13 @@
-const NFTCard = ({ nftData, blockTimestamp }) => {
-  const formatTimestamp = (timestamp) => {
+import { NFTData } from "@/types";
+import { Heart } from "lucide-react";
+
+interface NftDataProps {
+  nftData: NFTData,
+  blockTimestamp: number;
+}
+
+const NFTCard = ({ nftData, blockTimestamp } : NftDataProps) => {
+  const formatTimestamp = (timestamp : number) => {
     if (!timestamp) return '';
     return new Date(timestamp * 1000).toLocaleDateString();
   };
@@ -18,20 +26,8 @@ const NFTCard = ({ nftData, blockTimestamp }) => {
                 {nftData?.partner1} 💕 {nftData?.partner2}
               </h3>
               <p className="text-gray-600 mb-4">Eternal Bond Collection</p>
+           
               
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Compatibility</span>
-                  <span className="text-sm font-semibold text-pink-600">{nftData?.compatibility}%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Bond Strength</span>
-                  <span className="text-sm font-semibold text-purple-600">{nftData?.bondStrength}</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">Rarity</span>
-                  <span className="text-sm font-semibold text-cyan-600">{nftData?.rarity}</span>
-                </div>
               </div>
             </div>
             
@@ -51,7 +47,6 @@ const NFTCard = ({ nftData, blockTimestamp }) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
