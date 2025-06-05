@@ -2,7 +2,7 @@ import { Particle , ConfettiPiece } from "@/types";
 import { Heart, Sparkles } from "lucide-react";
 
 
-const AnimatedBackground = ({ particles, confetti }: { particles: Particle[], confetti: ConfettiPiece[] }) => {
+export const AnimatedBackground = ({ particles, confetti }: { particles: Particle[], confetti: ConfettiPiece[] }) => {
   return (
     <>
       {/* Background Blobs */}

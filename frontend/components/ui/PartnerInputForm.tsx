@@ -9,7 +9,7 @@ interface PartnerInputFormProps {
   onContinue: () => void;
 }
 
-const PartnerInputForm = ({ 
+export const PartnerInputForm = ({ 
   partner1Name, 
   setPartner1Name, 
   partner2Name, 

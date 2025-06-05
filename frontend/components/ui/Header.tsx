@@ -1,6 +1,6 @@
-const Header = ({ title , subtitle, className = "" } : {title : string , subtitle : string , className : string}) => {
+export const Header = ({ title, subtitle, className }: { title: string; subtitle?: string; className?: string }) => {
   return (
-    <div className={`text-center mb-12 ${className}`}>
+    <div className={`text-center mb-12 ${className || ''}`}>
       <h1 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-4 animate-pulse">
         {title}
       </h1>
