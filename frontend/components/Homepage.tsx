@@ -3,12 +3,12 @@ import { ChevronDown, Heart, Shield, Sparkles, Users, TrendingUp, Lock } from 'l
 
 export default function Homepage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-pink-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-gradient-to-r from-yellow-500/20 to-amber-500/20 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
       {/* Hero Section */}
@@ -17,17 +17,17 @@ export default function Homepage() {
           {/* Logo/Title with Glow Effect */}
           <div className="space-y-4">
             <div className="relative">
-              <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">
+              <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-emerald-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent tracking-tight">
                 CommitLock
               </h1>
-              <div className="absolute inset-0 text-6xl md:text-8xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent blur-lg opacity-50 tracking-tight">
+              <div className="absolute inset-0 text-6xl md:text-8xl font-bold bg-gradient-to-r from-emerald-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent blur-lg opacity-50 tracking-tight">
                 CommitLock
               </div>
             </div>
             <div className="flex items-center justify-center space-x-2">
-              <div className="w-12 h-px bg-gradient-to-r from-pink-400 to-purple-400"></div>
-              <Heart className="w-6 h-6 text-pink-400 animate-pulse" />
-              <div className="w-12 h-px bg-gradient-to-r from-purple-400 to-cyan-400"></div>
+              <div className="w-12 h-px bg-gradient-to-r from-emerald-400 to-yellow-400"></div>
+              <Heart className="w-6 h-6 text-red-400 animate-pulse" />
+              <div className="w-12 h-px bg-gradient-to-r from-yellow-400 to-orange-400"></div>
             </div>
           </div>
 
@@ -44,11 +44,11 @@ export default function Homepage() {
           {/* Feature Pills */}
           <div className="flex flex-wrap justify-center gap-4 py-6">
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 text-white flex items-center space-x-2">
-              <Shield className="w-5 h-5 text-green-400" />
+              <Shield className="w-5 h-5 text-emerald-400" />
               <span>Secure Commitment</span>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 text-white flex items-center space-x-2">
-              <TrendingUp className="w-5 h-5 text-blue-400" />
+              <TrendingUp className="w-5 h-5 text-orange-400" />
               <span>Grow Together</span>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 text-white flex items-center space-x-2">
@@ -59,12 +59,12 @@ export default function Homepage() {
 
           {/* CTA Button */}
           <div className="pt-6">
-            <button className="group relative bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 hover:from-pink-600 hover:via-purple-600 hover:to-cyan-600 text-white px-12 py-6 rounded-full text-xl font-semibold transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500/50 shadow-2xl">
+            <button className="group relative bg-gradient-to-r from-emerald-500 via-yellow-500 to-orange-500 hover:from-emerald-600 hover:via-yellow-600 hover:to-orange-600 text-white px-12 py-6 rounded-full text-xl font-semibold transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-500/50 shadow-2xl">
               <span className="relative z-10 flex items-center space-x-3">
                 <Lock className="w-6 h-6" />
                 <span>Create Your Commitment</span>
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-600 via-purple-600 to-cyan-600 rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-yellow-600 to-orange-600 rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
           </div>
         </div>
@@ -79,7 +79,7 @@ export default function Homepage() {
       <section className="relative z-10 bg-gradient-to-r from-white via-gray-50 to-white py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-orange-600 bg-clip-text text-transparent mb-6">
               Commitment Made Tangible
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -89,8 +89,8 @@ export default function Homepage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Deeper Commitment */}
-            <div className="group bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-3xl border-2 border-transparent hover:border-purple-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-              <div className="bg-gradient-to-r from-purple-500 to-pink-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <div className="group bg-gradient-to-br from-emerald-50 to-teal-50 p-8 rounded-3xl border-2 border-transparent hover:border-emerald-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+              <div className="bg-gradient-to-r from-emerald-500 to-teal-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Heart className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Deeper Commitment</h3>
@@ -100,8 +100,8 @@ export default function Homepage() {
             </div>
 
             {/* Shared Growth */}
-            <div className="group bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-3xl border-2 border-transparent hover:border-blue-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-              <div className="bg-gradient-to-r from-blue-500 to-cyan-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <div className="group bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-3xl border-2 border-transparent hover:border-orange-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <TrendingUp className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Shared Growth</h3>
@@ -111,8 +111,8 @@ export default function Homepage() {
             </div>
 
             {/* Trust & Transparency */}
-            <div className="group bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-3xl border-2 border-transparent hover:border-green-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-              <div className="bg-gradient-to-r from-green-500 to-emerald-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <div className="group bg-gradient-to-br from-yellow-50 to-amber-50 p-8 rounded-3xl border-2 border-transparent hover:border-yellow-200 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+              <div className="bg-gradient-to-r from-yellow-500 to-amber-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Shield className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Trust & Transparency</h3>
@@ -125,7 +125,7 @@ export default function Homepage() {
       </section>
 
       {/* How It Works */}
-      <section className="relative z-10 bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 py-20 px-6">
+      <section className="relative z-10 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800 py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-12">
             Simple. Powerful. Meaningful.
@@ -133,7 +133,7 @@ export default function Homepage() {
           
           <div className="grid md:grid-cols-3 gap-8 text-left">
             <div className="space-y-4">
-              <div className="bg-gradient-to-r from-pink-500 to-purple-500 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              <div className="bg-gradient-to-r from-emerald-500 to-teal-500 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl">
                 1
               </div>
               <h3 className="text-2xl font-semibold text-white">Commit Together</h3>
@@ -143,7 +143,7 @@ export default function Homepage() {
             </div>
             
             <div className="space-y-4">
-              <div className="bg-gradient-to-r from-purple-500 to-cyan-500 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              <div className="bg-gradient-to-r from-yellow-500 to-orange-500 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl">
                 2
               </div>
               <h3 className="text-2xl font-semibold text-white">Grow Your Bond</h3>
@@ -153,7 +153,7 @@ export default function Homepage() {
             </div>
             
             <div className="space-y-4">
-              <div className="bg-gradient-to-r from-cyan-500 to-green-500 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl">
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl">
                 3
               </div>
               <h3 className="text-2xl font-semibold text-white">Fair Resolution</h3>
