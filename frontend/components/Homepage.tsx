@@ -18,10 +18,10 @@ export default function Homepage() {
           <div className="space-y-4">
             <div className="relative">
               <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-emerald-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent tracking-tight">
-                CommitLock
+                Splitproof
               </h1>
               <div className="absolute inset-0 text-6xl md:text-8xl font-bold bg-gradient-to-r from-emerald-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent blur-lg opacity-50 tracking-tight">
-                CommitLock
+                Splitproof
               </div>
             </div>
             <div className="flex items-center justify-center space-x-2">
