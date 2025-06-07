@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronDown, Heart, Shield, Sparkles, Users, TrendingUp, Lock } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Homepage() {
   return (
@@ -60,10 +61,12 @@ export default function Homepage() {
           {/* CTA Button */}
           <div className="pt-6">
             <button className="group relative bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 hover:from-pink-500 hover:via-rose-500 hover:to-purple-500 text-white px-12 py-6 rounded-full text-xl font-semibold transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-pink-300/50 shadow-2xl">
-              <span className="relative z-10 flex items-center space-x-3">
-                <Lock className="w-6 h-6" />
-                <span>Create Your Commitment</span>
-              </span>
+              <Link href='/mint'>
+                <span className="relative z-10 flex items-center space-x-3">
+                  <Lock className="w-6 h-6" />
+                  <span>Create Your Commitment</span>
+                </span>
+              </Link>
               <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
           </div>
