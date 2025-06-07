@@ -17,7 +17,7 @@ export const TransactionDetails = ({ txHash, blockTimestamp }  : TransactionDeta
         <div className="flex justify-between">
           <span className="text-gray-600">Transaction Hash:</span>
           <a 
-            href={`https://etherscan.io/tx/${txHash}`}
+            href={`https://sepolia.etherscan.io/tx/${txHash}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-700 underline"

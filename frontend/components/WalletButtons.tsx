@@ -16,14 +16,14 @@ export default function WalletButton() {
       ) : (
         <button
           onClick={() => connect({ connector: connectors[0] })}
-          className='bg-blue-500 text-white px-4 py-2 rounded-lg font-medium'
+          className='bg-blue-500 text-white px-4 py-2 rounded-lg font-medium cursor-pointer'
         >
           connect wallet
         </button>
       )}
       <button
         onClick={() => disconnect()}
-        className='bg-blue-500 text-white px-4 py-2 rounded-lg font-medium'
+        className='bg-blue-500 text-white px-4 py-2 rounded-lg font-medium cursor-pointer'
       >
         disconnect
       </button>

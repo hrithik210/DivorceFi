@@ -11,13 +11,12 @@ import { NFTCard } from "./NftCard";
 import { TransactionDetails } from "./TransactionDetails";
 import { ActionButtons } from "./ActionButtons";
 
-
 import abi from '../abi/abi.json'
 
-import { Address, createPublicClient, createWalletClient, custom, http, parseEther } from 'viem'
+import { Address, createPublicClient, createWalletClient, custom, http, parseEther, decodeEventLog } from 'viem'
 import { sepolia } from 'viem/chains'
 
-export const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS as Address;
+export const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as Address;
 
 export const CONTRACT_ABI = abi
 
@@ -116,9 +115,9 @@ const MintRelationshipNFT = () => {
   };
 
   const handleMint = async () => {
-    // Check if contract address is still placeholder
-    if (CONTRACT_ADDRESS === "0x1234567890123456789012345678901234567890") {
-      setError('Please update CONTRACT_ADDRESS with your deployed contract address');
+    // Check if contract address is set
+    if (!CONTRACT_ADDRESS || CONTRACT_ADDRESS === "0x1234567890123456789012345678901234567890") {
+      setError('Contract address not configured. Please set NEXT_PUBLIC_CONTRACT_ADDRESS in your environment variables.');
       return;
     }
 
@@ -177,7 +176,8 @@ const MintRelationshipNFT = () => {
       console.log('Attempting to mint with:', {
         partner2Address,
         stakeAmount,
-        account
+        account,
+        contractAddress: CONTRACT_ADDRESS
       });
 
       // Call the smart contract
@@ -198,7 +198,7 @@ const MintRelationshipNFT = () => {
       const receipt = await publicClient.waitForTransactionReceipt({ 
         hash,
         confirmations: 1,
-        timeout: 60000 // 60 second timeout
+        timeout: 120000 // 2 minute timeout
       });
 
       console.log('Transaction receipt:', receipt);
@@ -212,31 +212,57 @@ const MintRelationshipNFT = () => {
       const timestamp = Number(block.timestamp);
       setBlockTimestamp(timestamp);
 
-      // Parse logs to get token ID
+      // Parse logs to get token ID - improved method
       let tokenId: number | null = null;
       
-      // Look for RelationshipMinted event
-      const relationshipMintedTopic = '0x' + 'RelationshipMinted(uint256,address,address,uint256)'.split('').map(c => c.charCodeAt(0).toString(16)).join('');
-      
-      for (const log of receipt.logs) {
-        try {
-          if (log.address.toLowerCase() === CONTRACT_ADDRESS.toLowerCase() && log.data) {
-            // The tokenId is the first parameter in the data
-            const tokenIdHex = '0x' + log.data.slice(2, 66);
-            tokenId = parseInt(tokenIdHex, 16);
-            console.log('Found tokenId:', tokenId);
-            break;
+      try {
+        // Try to decode logs using viem's decodeEventLog
+        for (const log of receipt.logs) {
+          if (log.address.toLowerCase() === CONTRACT_ADDRESS.toLowerCase()) {
+            try {
+              // Try to decode as RelationshipMinted event
+              const decoded = decodeEventLog({
+                abi: CONTRACT_ABI,
+                data: log.data,
+                topics: log.topics,
+              });
+              
+              console.log('Decoded log:', decoded);
+              
+              // Check if this is a RelationshipMinted event
+              if (decoded.eventName === 'RelationshipMinted' || decoded.eventName === 'Transfer') {
+                // Extract token ID from the decoded args
+                if (decoded.args && 'tokenId' in decoded.args) {
+                  tokenId = Number(decoded.args.tokenId);
+                } else if (decoded.args && Array.isArray(decoded.args) && decoded.args.length > 0) {
+                  // Sometimes the tokenId is the first argument
+                  tokenId = Number(decoded.args[0]);
+                }
+                
+                if (tokenId !== null) {
+                  console.log('Found tokenId from decoded log:', tokenId);
+                  break;
+                }
+              }
+            } catch (decodeError) {
+              console.log('Could not decode log:', decodeError);
+              // Continue to next log
+            }
           }
-        } catch (e) {
-          console.log('Error parsing log:', e);
         }
+      } catch (logError) {
+        console.log('Error processing logs:', logError);
       }
 
-      console.log('Final tokenId:', tokenId);
+      // Fallback: generate a random token ID if we couldn't extract it
+      if (tokenId === null) {
+        tokenId = Math.floor(Math.random() * 10000);
+        console.log('Using fallback tokenId:', tokenId);
+      }
 
       // Create NFT data
       const mockNftData = {
-        tokenId: tokenId || Math.floor(Math.random() * 10000),
+        tokenId: tokenId,
         partner1: partner1Name,
         partner2: partner2Name,
         mintedAt: timestamp,
@@ -253,19 +279,33 @@ const MintRelationshipNFT = () => {
     } catch (err: any) {
       console.error('Minting failed:', err);
       
-      // Handle specific error cases
-      if (err.message?.includes('user rejected')) {
-        setError('Transaction was rejected by user');
+      // More detailed error handling
+      let errorMessage = 'Transaction failed';
+      
+      if (err.message?.includes('user rejected') || err.message?.includes('User rejected')) {
+        errorMessage = 'Transaction was rejected by user';
       } else if (err.message?.includes('insufficient funds')) {
-        setError('Insufficient funds for transaction');
-      } else if (err.message?.includes('cant date yourself')) {
-        setError("Can't date yourself lil bro 😄");
-      } else if (err.message?.includes('amount should be more than 0')) {
-        setError('Stake amount must be greater than 0');
-      } else {
-        setError(err.message || 'Transaction failed');
+        errorMessage = 'Insufficient funds for transaction';
+      } else if (err.message?.includes('execution reverted')) {
+        // Try to extract the revert reason
+        if (err.message.includes('cant date yourself')) {
+          errorMessage = "Can't date yourself lil bro 😄";
+        } else if (err.message.includes('amount should be more than 0')) {
+          errorMessage = 'Stake amount must be greater than 0';
+        } else if (err.message.includes('Partner already in relationship')) {
+          errorMessage = 'Partner is already in a relationship';
+        } else {
+          errorMessage = 'Transaction reverted: ' + (err.shortMessage || err.message);
+        }
+      } else if (err.code === 4001) {
+        errorMessage = 'Transaction was rejected by user';
+      } else if (err.code === -32603) {
+        errorMessage = 'Internal JSON-RPC error. Please try again.';
+      } else if (err.message) {
+        errorMessage = err.message;
       }
       
+      setError(errorMessage);
       setMintingState('failed');
     } finally {
       setTimeout(() => {
