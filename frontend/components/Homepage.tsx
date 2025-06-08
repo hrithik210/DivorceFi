@@ -19,10 +19,10 @@ export default function Homepage() {
           <div className="space-y-4">
             <div className="relative">
               <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-pink-500 via-rose-400 to-purple-500 bg-clip-text text-transparent tracking-tight">
-                Splitproof
+                Luvana
               </h1>
               <div className="absolute inset-0 text-6xl md:text-8xl font-bold bg-gradient-to-r from-pink-500 via-rose-400 to-purple-500 bg-clip-text text-transparent blur-lg opacity-50 tracking-tight">
-                Splitproof
+                Luvana
               </div>
             </div>
             <div className="flex items-center justify-center space-x-2">
