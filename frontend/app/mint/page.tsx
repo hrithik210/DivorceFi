@@ -1,11 +1,12 @@
 import MintRelationshipNFT from '@/components/MintPage'
+import SidebarLayout from '@/components/sidebarLayout'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>
+    <SidebarLayout>
       <MintRelationshipNFT />
-    </div>
+    </SidebarLayout>
   )
 }
 
